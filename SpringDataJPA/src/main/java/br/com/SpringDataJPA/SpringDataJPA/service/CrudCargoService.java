@@ -10,7 +10,7 @@ import java.util.Scanner;
 @Service
 public class CrudCargoService {
 
-    private Boolean system = true;
+
     private final CargoRepository cargoRepository;
 
     public CrudCargoService(CargoRepository cargoRepository){
@@ -18,11 +18,15 @@ public class CrudCargoService {
     }
 
     public void inicial(Scanner scanner) {
+        boolean system = true;
 
         while (system){
 
-            System.out.println("\n1 - Salvar");
+            System.out.println(" Menu Cargos ");
+            System.out.println("1 - Salvar");
             System.out.println("2 - Atualizar");
+            System.out.println("3 - Visualizar");
+            System.out.println("4 - Deletar");
             System.out.println("0 - Sair");
             System.out.print("Qual a escolha:");
 
@@ -31,14 +35,16 @@ public class CrudCargoService {
             switch (action){
                 case 1 -> salvar(scanner);
                 case 2 -> atualizar(scanner);
+                case 3 -> visualizar();
+                case 4 -> deletar(scanner);
                 case 0 -> system = false;
             }
         }
 
     }
 
-    public void salvar( Scanner scanner ) {
-        System.out.println("Descricao do cargo:");
+    private void salvar( Scanner scanner ) {
+        System.out.print("Descricao do cargo:");
         String descricao = scanner.next();
         Cargo cargo = new Cargo();
         cargo.setDescricao(descricao);
@@ -47,7 +53,7 @@ public class CrudCargoService {
 
     }
 
-    public void atualizar( Scanner scanner ){
+    private void atualizar( Scanner scanner ){
 
         Cargo cargo = new Cargo();
 
@@ -61,6 +67,23 @@ public class CrudCargoService {
 
         cargoRepository.save(cargo);
         System.out.println("Atualizado!");
+    }
+
+    private void visualizar(){
+
+        Iterable<Cargo> cargos = cargoRepository.findAll();
+        cargos.forEach(cargo -> System.out.println(cargo.toString()));
+
+    }
+
+    private void deletar(Scanner scanner){
+
+        System.out.println("ID:");
+        int id = scanner.nextInt();
+
+        cargoRepository.deleteById(id);
+        System.out.println("Deletado!");
+
     }
 
 }
