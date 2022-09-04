@@ -6,6 +6,9 @@ import br.com.SpringDataJPA.SpringDataJPA.orm.UnidadeTrabalho;
 import br.com.SpringDataJPA.SpringDataJPA.repository.CargoRepository;
 import br.com.SpringDataJPA.SpringDataJPA.repository.FuncionarioRepository;
 import br.com.SpringDataJPA.SpringDataJPA.repository.UnidadeTrabalhoRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 
@@ -40,7 +43,7 @@ public class CrudFuncionarioService {
 
         while(system) {
 
-            System.out.println(" Menu Funcionarios ");
+            System.out.println("\n Menu Funcionarios ");
             System.out.println("1 - Salvar");
             System.out.println("2 - Atualizar");
             System.out.println("3 - Visualizar");
@@ -54,7 +57,7 @@ public class CrudFuncionarioService {
             switch (action) {
                 case 1 -> salvar(scanner);
                 case 2 -> atualizar(scanner);
-                case 3 -> visualizar();
+                case 3 -> visualizar(scanner);
                 case 4 -> deletar(scanner);
                 case 0 -> system = false;
             }
@@ -145,9 +148,18 @@ public class CrudFuncionarioService {
         System.out.println("Alterado");
     }
 
-    private void visualizar() {
-        Iterable<Funcionario> funcionarios = funcionarioRepository.findAll();
-        funcionarios.forEach(funcionario -> System.out.println(funcionario));
+    private void visualizar(Scanner scanner) {
+        System.out.print("Pagina para visualizar:");
+        int page = scanner.nextInt();
+
+        PageRequest pageable = PageRequest.of(page, 5, Sort.by(Sort.Direction.ASC, "nome") );
+
+        Page<Funcionario> funcionarios = funcionarioRepository.findAll(pageable);
+
+        System.out.println(funcionarios);
+        System.out.println("Pagina Atual:" + funcionarios.getNumber() );
+        System.out.println("Total:" + funcionarios.getTotalElements());
+        funcionarios.forEach(System.out::println);
     }
 
     private void deletar(Scanner scanner) {

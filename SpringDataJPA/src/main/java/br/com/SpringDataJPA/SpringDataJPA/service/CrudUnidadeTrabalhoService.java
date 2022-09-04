@@ -22,7 +22,7 @@ public class CrudUnidadeTrabalhoService {
 		while(system) {
 
 
-			System.out.println(" Menu Unidade de Trabalho ");
+			System.out.println("\n Menu Unidade de Trabalho ");
 			System.out.println("1 - Salvar");
 			System.out.println("2 - Atualizar");
 			System.out.println("3 - Visualizar");

@@ -22,7 +22,7 @@ public class CrudCargoService {
 
         while (system){
 
-            System.out.println(" Menu Cargos ");
+            System.out.println("\n Menu Cargos ");
             System.out.println("1 - Salvar");
             System.out.println("2 - Atualizar");
             System.out.println("3 - Visualizar");
