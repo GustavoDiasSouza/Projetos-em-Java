@@ -1,0 +1,47 @@
+<head th:fragment="head">
+    <meta charset="UTF-8">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <style>
+        .logo {
+            font-size: 4.0rem;
+            color: white;
+        }
+
+        .activee{
+            color: red;
+        }
+
+    </style>
+</head>
+
+<header th:fragment="logo" class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom p-4 bg-primary ">
+    <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
+        <span class="logo p-2" >Mudi</span>
+    </a>
+
+    <ul class="nav nav-pills align-items-center">
+        <li class="nav-item "><a href="#" class="nav-link active" aria-current="page">Login</a></li>
+    </ul>
+</header>
+
+<div class="jumbotron jumbotron-fluid " th:fragment="titulo">
+    <div class="container">
+        <h1 class="display-4 mb-0" th:text="${valor}"></h1>
+    </div>
+</div>
+
+
+<nav class="navbar navbar-expand bg-light" th:fragment="nav">
+    <div class="container-fluid">
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2">
+                <li class="nav-item"><a class="nav-link active" aria-current="page" href="/home" >Todos</a></li>
+                <li class="nav-item"><a class="nav-link" href="/home/aguardando" >Aguardando</a></li>
+                <li class="nav-item"><a class="nav-link" href="/home/aprovado" >Aprovados</a></li>
+                <li class="nav-item"><a class="nav-link" href="/home/entregue" >Entregues</a></li>
+            </ul>
+            <button class="btn btn-outline-secondary" type="submit">Novo</button>
+        </div>
+    </div>
+</nav>

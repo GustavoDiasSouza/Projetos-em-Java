@@ -1,0 +1,69 @@
+<html xmlns:th="http://www.thymeleaf.org" >
+    <head th:replace="~{base :: head}"></head>
+    <body>
+
+        <header th:replace="~{base :: logo}" >
+        </header>
+
+        <div class="container mt-4">
+
+            <div th:replace="~{base :: titulo(valor='Novo Pedido')}" >
+            </div>
+
+            <nav th:replace="~{base :: nav}">
+            </nav>
+
+            <div class="card mt-3">
+                <form th:object="${requisicaoNovoPedido}" action="/pedido/novo" class="m-4" method="POST">
+
+                    <div class="mb-3">
+
+                        <label for="nomeProduto" class="form-label">Produto</label>
+                        <input th:field="*{nomeProduto}" th:errorClass="is-invalid"  type="text" class="form-control" id="nomeProduto" aria-describedby="Produto" placeholder="Nome do produto">
+                        <div class="form-text">Informe qual o nome do produto.</div>
+
+                        <div th:errors="*{nomeProduto}" class="invalid-feedback">
+                            Erros do nome do produto
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+
+                        <label for="urlProduto" class="form-label">URL</label>
+                        <input th:field="*{urlProduto}" th:errorClass="is-invalid" type="text" class="form-control" id="urlProduto" aria-describedby="urlProduto" placeholder="Url do produto">
+                        <div class="form-text">Informe qual a url que o produto se encontra.</div>
+
+                        <div th:errors="*{urlProduto}" class="invalid-feedback">
+                            Erros do nome do produto
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+
+                        <label for="urlImagem" class="form-label">Imagem</label>
+                        <input th:field="*{urlImagem}" th:errorClass="is-invalid" type="text" class="form-control" id="urlImagem" aria-describedby="urlImagem" placeholder="Url da image">
+                        <div class="form-text">Informe qual a url da imagem deste produto.</div>
+
+                        <div th:errors="*{urlImagem}" class="invalid-feedback">
+                            Erros do nome do produto
+                        </div>
+                    </div>
+
+                    <div>
+
+                        <label class="form-label">Descrição</label>
+                        <textarea th:field="*{descricao}" th:errorClass="is-invalid" id="descricao"  class="form-control mb-3" aria-label="descricao" placeholder="Descreva os detalhes do seu produto."></textarea>
+
+                        <div th:errors="*{descricao}" class="invalid-feedback">
+                            Erros do nome do produto
+                        </div>
+                    </div>
+
+
+                    <button type="submit" class="btn btn-primary">Cadastrar</button>
+                </form>
+            </div>
+
+        </div>
+    </body>
+</html>
