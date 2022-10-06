@@ -1,2 +1,2 @@
-Aplicações denvolvidas ao longo do aprendizado em Java e Spring Boot.
+Aplicações desenvolvidas ao longo do aprendizado em Java e Spring Boot.
 
